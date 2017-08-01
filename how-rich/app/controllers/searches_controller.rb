@@ -9,11 +9,11 @@ class SearchesController < ApplicationController
 
   def create
     search = Search.create(search_params)
-    stock = Stock.find_by(stock_params)
+    stock = Stock.find_or_create_by(stock_params)
     stock.searches << search
     stock_quote = MarketBeat.quotes(stock.ticker_symbol, search.start_date, search.end_date)
-
-    search.update(buy_price: stock_quote.first[:low].to_f, sell_price: stock_quote.last[:high].to_f)
+    byebug
+    search.update(sell_price: stock_quote.first[:low].to_f, buy_price: stock_quote.last[:high].to_f)
     @calculation = Calculation.new(search)
     render :stock_search
   end

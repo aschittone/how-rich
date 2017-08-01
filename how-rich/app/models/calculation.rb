@@ -10,7 +10,7 @@ class Calculation
     @investment_amount = search.investment_amount
     @name = search.stock.name
     @ticker_symbol = search.stock.ticker_symbol
-    byebug
+  
   end
 
   def shares
@@ -18,7 +18,7 @@ class Calculation
   end
 
   def total_roi
-    ((total_profit / investment_amount) * 100).round(2)
+    ((total_profit / investment_amount)*100).round(2)
   end
 
   def total_profit
