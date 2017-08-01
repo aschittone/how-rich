@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731213303) do
+ActiveRecord::Schema.define(version: 20170801192528) do
 
   create_table "searches", force: :cascade do |t|
-    t.integer "buy_price"
-    t.integer "sell_price"
+    t.float "buy_price"
+    t.float "sell_price"
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer "investment_amount"
