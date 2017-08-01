@@ -1,0 +1,11 @@
+<%= form_for @search do |f| %>
+  <%= f.label "Investment Amount" %>
+  <%= f.text_field :investment_amount %>
+  <%= f.label "Ticker Symbol" %>
+  <input type="text" name="stock" value="">
+  <%= f.label "Buy Date" %>
+  <input type="date" name="search[start_date]" value="">
+  <%= f.label "Sell Date" %>
+  <input type="date" name="search[end_date]" value="">
+  <%= f.submit "Submit" %>
+<% end %>
