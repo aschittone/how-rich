@@ -1,6 +1,6 @@
 class Calculation
 
-  attr_accessor :start_date, :end_date, :shares, :invested_money, :buy_price, :sell_price, :name, :ticker_symbol
+  attr_accessor :search, :start_date, :end_date, :shares, :invested_money, :buy_price, :sell_price, :name, :ticker_symbol
 
   def initialize(search)
     @start_date = search.start_date
@@ -11,6 +11,12 @@ class Calculation
     @invested_money = (shares * buy_price).round(2)
     @name = search.stock.name
     @ticker_symbol = search.stock.ticker_symbol
+    @search = search
+    do_update
+  end
+
+  def do_update
+    search.update(profit: profit, total_return: total_return, annual_return: annual_return, invested_money: invested_money, shares: shares, investment_timeframe: investment_timeframe)
   end
 
   def profit

@@ -8,19 +8,19 @@ class SearchesController < ApplicationController
   end
 
   def create
-    search = Search.create(search_params)
+    @search = Search.create(search_params)
     stock = Stock.find_by(stock_params)
     # make sure ticker_symbols are up case when inputted
-    stock.searches << search
+    stock.searches << @search
     if current_user
-      current_user.searches << search
+      current_user.searches << @search
     end
-    stock_quote = MarketBeat.quotes(stock.ticker_symbol, search.start_date, search.end_date)
-    search.update(sell_price: stock_quote.first[:low].to_f, buy_price: stock_quote.last[:high].to_f)
-    if search.start_date < stock_quote.last[:date]
+    stock_quote = MarketBeat.quotes(stock.ticker_symbol, @search.start_date, @search.end_date)
+    @search.update(sell_price: stock_quote.first[:low].to_f, buy_price: stock_quote.last[:high].to_f)
+    if @search.start_date < stock_quote.last[:date]
       flash[:message] = "This stock was not around at that time!"
       render :new
-    elsif search.buy_price > search.investment_amount
+    elsif @search.buy_price > @search.investment_amount
       flash[:message] = "That isn't enough to buy one share! The price per share on that day was #{search.buy_price}"
       render :new
     else
