@@ -11,6 +11,7 @@ class SearchesController < ApplicationController
     search = Search.create(search_params)
     stock = Stock.find_by(stock_params)
     # make sure ticker_symbols are up case when inputted
+
     stock.searches << search
     if current_user
       current_user.searches << search
@@ -24,6 +25,7 @@ class SearchesController < ApplicationController
       flash[:message] = "That isn't enough to buy one share! The price per share on that day was #{search.buy_price}"
       render :new
     else
+      byebug
       @calculation = Calculation.new(search)
       render :stock_search
     end
