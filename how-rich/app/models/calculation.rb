@@ -10,7 +10,7 @@ class Calculation
     @investment_amount = search.investment_amount
     @name = search.stock.name
     @ticker_symbol = search.stock.ticker_symbol
-  
+
   end
 
   def shares
