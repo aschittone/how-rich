@@ -22,11 +22,11 @@ class Calculation
 
   def total_profit
     gross_profit = (sell_price - buy_price) * shares
-    gross_profit - investment_amount).round(2)
+    (gross_profit - investment_amount).round(2)
   end
 
   def annual_return
-    (total_roi / timeline).round(2) 
+    (total_roi / timeline).round(2)
   end
 
   def timeline
