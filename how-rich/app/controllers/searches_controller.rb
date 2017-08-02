@@ -24,7 +24,7 @@ class SearchesController < ApplicationController
       flash[:message] = "That isn't enough to buy one share! The price per share on that day was #{search.buy_price}"
       render :new
     else
-      @calculation = Calculation.new(search)
+      @calculation = Calculation.new(@search)
       render :stock_search
     end
   end
