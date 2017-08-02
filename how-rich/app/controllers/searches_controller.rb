@@ -27,6 +27,7 @@ class SearchesController < ApplicationController
         current_user.searches << @search
         @user_searches = Search.where(user_id: "#{current_user.id}")
       end
+      @all_searches = Search.all
       render :stock_search
     end
   end

@@ -26,3 +26,5 @@ Things you may want to cover:
 * shouldawouldacoulda relink to root
 * put ticker symble field first on home page
 * signin is broken
+* only show all user searches on user_show page
+* on main page show top searches
