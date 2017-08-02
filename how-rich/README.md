@@ -21,4 +21,8 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+===========
+
+* shouldawouldacoulda relink to root
+* put ticker symble field first on home page
+* signin is broken

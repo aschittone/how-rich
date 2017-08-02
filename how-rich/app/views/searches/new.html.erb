@@ -10,10 +10,10 @@
   <%= form_tag '/searches' do %>
 
     <div class="col-md-3 col-sm-3 col-xs-3"></div>
-    <div class="col-md-3 col-sm-3 col-xs-3 sec"><input class="form-control" name="search[start_date]" type='date' value="Start Date">
+    <div class="col-md-3 col-sm-3 col-xs-3 sec"><input class="form-control" name="search[start_date]" type='date' max="<%= Date.yesterday %>" value="Start Date">
 </input>
     </div>
-    <div class="col-md-3 col-sm-3 col-xs-3 sec"><input class="form-control" name="search[end_date]" type='date' value="End Date">
+    <div class="col-md-3 col-sm-3 col-xs-3 sec"><input class="form-control" name="search[end_date]" type='date' max="<%= Date.today %>" value="End Date">
 </input></div>
     <div class="col-md-3 col-sm-3 col-xs-3"></div>
 </div>
