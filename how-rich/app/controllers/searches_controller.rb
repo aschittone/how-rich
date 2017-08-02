@@ -17,7 +17,6 @@ class SearchesController < ApplicationController
     end
     stock_quote = MarketBeat.quotes(stock.ticker_symbol, search.start_date, search.end_date)
     search.update(sell_price: stock_quote.first[:low].to_f, buy_price: stock_quote.last[:high].to_f)
-    byebug
     if search.start_date < stock_quote.last[:date]
       flash[:message] = "This stock was not around at that time!"
       render :new

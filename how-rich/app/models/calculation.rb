@@ -10,7 +10,6 @@ class Calculation
     @investment_amount = search.investment_amount
     @name = search.stock.name
     @ticker_symbol = search.stock.ticker_symbol
-
   end
 
   def shares
@@ -23,11 +22,11 @@ class Calculation
 
   def total_profit
     gross_profit = (sell_price - buy_price) * shares
-    gross_profit - investment_amount
+    gross_profit - investment_amount).round(2)
   end
 
   def annual_return
-    (total_roi / timeline).round(2)
+    (total_roi / timeline).round(2) 
   end
 
   def timeline
