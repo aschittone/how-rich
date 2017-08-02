@@ -1,5 +1,77 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-shares:<h1> <%= @calculation.shares %> </h1>
-profit:<h1> <%= @calculation.profit%> </h1>
-total return:<h1> <%= @calculation.total_return %> </h1>
-annual return:<h1> <%= @calculation.annual_return%> </h1>
+<div class="container"
+	<div class="row"><br>
+
+		<div class="jumbotron">
+      <% if @calculation.profit < 0%>
+        <h2 class="text-center">Based on our advanced algorithms, you would have lost <%= "$#{@calculation.profit}" %> on this stock, during this time period. </h2>
+      <% else %>
+      <h2 class="text-center">Based on our advanced algorithms, you would have made <%= "$#{@calculation.profit}" %> on this stock, during this time period. </h2>
+      <% end %>
+    </div>
+	</div>
+</div>
+
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+  <div class="panel text-center price-panel panel-blue">
+    <div class="panel-heading">
+      <h3>Total Profit</h3>
+    </div>
+    <div class="panel-body">
+      <p class="lead big-lead"><strong>$<%= @calculation.profit%></strong></p>
+    </div>
+    <div class="panel-footer">
+      <a href="http://www.investopedia.com/terms/p/profit.asp" class="btn btn-lg btn-block btn-primary">What's Profit?</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="panel text-center price-panel panel-grey">
+            <div class="panel-heading">
+              <h3>Total Return (ROI)</h3>
+            </div>
+            <div class="panel-body">
+              <p class="lead big-lead"><strong> <%= @calculation.total_return %>% </strong></p>
+            </div>
+            <div class="panel-footer">
+              <a href="https://www.entrepreneur.com/encyclopedia/return-on-investment-roi" class="btn btn-lg btn-block btn-primary">What's ROI?</a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="panel text-center price-panel panel-green">
+            <div class="panel-heading">
+              <h3>Annual Return</h3>
+            </div>
+            <div class="panel-body">
+              <p class="lead big-lead"><strong><%= @calculation.annual_return %>%</strong></p>
+            </div>
+            <div class="panel-footer">
+              <a href="http://www.investopedia.com/terms/a/annual-return.asp" class="btn btn-lg btn-block btn-primary">What's Annual Return?</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="panel text-center price-panel panel-red">
+            <div class="panel-heading">
+              <h3>Shares purchased</h3>
+            </div>
+            <div class="panel-body">
+              <p class="lead big-lead"><strong><%= @calculation.shares %> shares</strong></p>
+            </div>
+
+            <div class="panel-footer">
+              <a href="http://www.investopedia.com/terms/s/shares.asp" class="btn btn-lg btn-block btn-primary">What's a Share?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
