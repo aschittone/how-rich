@@ -44,9 +44,8 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
               <% if logged_in? %>
-                <%= button_to("Log Out", signin_path, method: "delete", class: "btn btn-default navbar-btn") %>
+                <%= button_to("Log Out", signout_path, method: "delete", class: "btn btn-default navbar-btn") %>
               <% else %>
                 <button type="button" class="btn btn-default navbar-btn" onclick="window.location.href='/users/new'">Sign up</button>
                 <button type="button" class="btn btn-default navbar-btn" onclick="window.location.href='/sessions/new'">Sign in</button>

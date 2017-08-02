@@ -11,7 +11,11 @@ class SearchesController < ApplicationController
     search = Search.create(search_params)
     stock = Stock.find_by(stock_params)
     # make sure ticker_symbols are up case when inputted
-    stock.searches << search
+    byebug
+    search.stock_id = stock.id
+    if current_user
+      search.user_id = current_user.id
+    end
     stock_quote = MarketBeat.quotes(stock.ticker_symbol, search.start_date, search.end_date)
     search.update(sell_price: stock_quote.first[:low].to_f, buy_price: stock_quote.last[:high].to_f)
     if search.start_date < stock_quote.last[:date]
