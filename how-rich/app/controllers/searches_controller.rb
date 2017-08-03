@@ -1,7 +1,6 @@
 class SearchesController < ApplicationController
 
   def new
-    byebug
     @all_searches = Search.all
     if current_user
       @user_searches = Search.where(user_id: "#{current_user.id}")

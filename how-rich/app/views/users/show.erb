@@ -4,7 +4,7 @@
         <div class="col-sm-10">
              <h1 class=""><%= @user.username %></h1>
 
-          <button type="button" class="btn btn-success">Book me!</button>  <button type="button" class="btn btn-info">Send me a message</button>
+          <button type="button" class="btn btn-success">Follow me</button>  <button type="button" class="btn btn-info">Who I'm Following</button>
 <br>
         </div>
 
@@ -13,73 +13,61 @@
     <div class="row">
         <div class="col-sm-3">
             <!--left col-->
-            <ul class="list-group">
-                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span> <%= @user.created_at.strftime("%B %Y") %></li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Name</strong></span> <%= @user.name %></li>
-          
-
-                      </li>
-            </ul>
-           <div class="panel panel-default">
-             <div class="panel-heading">Insured / Bonded?
-
-                </div>
-                <div class="panel-body"><i style="color:green" class="fa fa-check-square"></i> Yes, I am insured and bonded.
-
-                </div>
-            </div>
             <div class="panel panel-default">
-                <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i>
+              <div class="panel-heading"><strong class="">Stats</strong>
 
-                </div>
-                <div class="panel-body"><a href="http://bootply.com" class="">bootply.com</a>
-
-                </div>
-            </div>
-
+                 </div>
             <ul class="list-group">
-                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i>
+              <li class="list-group-item text-right"><span class="pull-left">Name</span> <%= @user.name %></li>
+                <li class="list-group-item text-right"><span class="pull-left">Joined</span> <%= @user.created_at.strftime("%B %Y") %></li>
 
-                </li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Shares</strong></span> 125</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> 13</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Posts</strong></span> 37</li>
-                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Followers</strong></span> 78</li>
             </ul>
-            <div class="panel panel-default">
-                <div class="panel-heading">Social Media</div>
-                <div class="panel-body">	<i class="fa fa-facebook fa-2x"></i>  <i class="fa fa-github fa-2x"></i>
-                    <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i>  <i class="fa fa-google-plus fa-2x"></i>
+          </div>
 
-                </div>
-            </div>
+          <div class="panel panel-default">
+            <div class="panel-heading"><strong class="">Activity</strong>
+
+               </div>
+          <ul class="list-group">
+            <li class="list-group-item text-right"><span class="pull-left">Searches</span> <%= @user_searches.count %></li>
+              <li class="list-group-item text-right"><span class="pull-left">Followers</span> <%= "flws" %></li>
+              <li class="list-group-item text-right"><span class="pull-left">Following</span> <%= "flwng" %></li>
+
+          </ul>
+        </div>
+
         </div>
         <!--/col-3-->
         <div class="col-sm-9" style="" contenteditable="false">
             <div class="panel panel-default">
-                <div class="panel-heading"><%= "Hello #{@user.name}! Here's your five most recent searches"%></div>
-                <div class="panel-body">
+                <div class="panel-heading"><h3><%= "Hello #{@user.name}!"%></h3>
+                  <h4>Here's your five most recent searches</h4>
+                </div>
+                <ul class="list-group">
                   <% @user_searches.all.reverse.take(5).each do |search| %>
                   <% timeframe = 0 %>
-            			<% if search.end_date.year == search.start_date.year %>
-            					<% timeframe = 1 %>
-            			<% else %>
-            					<% timeframe = search.end_date.year - search.start_date.year %>
-            			<% end %>
-                  <h4><%= "Bought #{search.shares} shares of #{search.stock.name} @ #{search.buy_price} per share" %></h4>
-                    <%= "Invested $#{search.invested_money}" %>
-                    <br>
-                    <%= "Profit $#{search.profit}" %>
-                    <br>
-                    <%= "Total Return #{search.total_return}% over #{timeframe} years" %>
-                    <br>
-                    <%= "Annualized Return #{search.annual_return}%" %>
-                    <br>
-                    <br>
-                    <br>
+                  <% if search.end_date.year == search.start_date.year %>
+                      <% timeframe = 1 %>
+                  <% else %>
+                      <% timeframe = search.end_date.year - search.start_date.year %>
                   <% end %>
-                </div>
+
+                  <li class="list-group-item"><span class="pull-left"></span><h4><%= "Bought #{search.shares} shares of #{search.stock.name} @ #{search.buy_price} per share" %></h4>
+                  <%= "Invested: $#{search.invested_money}" %>
+                  <br>
+                  <%= "Profit: $#{search.profit}" %>
+                  <br>
+                  <%= "Total Return: #{search.total_return}% over #{timeframe} year(s)" %>
+                  <br>
+                  <%= "Annualized Return: #{search.annual_return}%" %>
+                  <br>
+                  <br>
+                  </li>
+                  <% end %>
+                </ul>
+
+
+
             </div>
             <!-- <div class="panel panel-default target">
                 <div class="panel-heading" contenteditable="false">Pets I Own</div>
@@ -147,7 +135,7 @@
                 </div>
 </div></div> -->
 
-
+<!--
             <div id="push"></div>
         </div>
         <footer id="footer">
@@ -356,8 +344,8 @@
             $('.alert').delay(3500).fadeOut(1000);
         }
         </script>
-        <!-- Quantcast Tag -->
-        <script type="text/javascript">
+        <!- Quantcast Tag -->
+        <!-- <script type="text/javascript">
         var _qevents = _qevents || [];
 
         (function() {
@@ -378,7 +366,8 @@
         &amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;img src="//pixel.quantserve.com/pixel/p-0cXb7ATGU9nz5.gif" border="0" height="1" width="1" alt="Quantcast"/&amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
         &amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/div&amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
         </noscript>
-        <!-- End Quantcast tag -->
+
+
         <div id="completeLoginModal" class="modal hide">
             <div class="modal-header">
                 <a href="#" data-dismiss="modal" aria-hidden="true" class="close">×</a>
@@ -471,4 +460,4 @@
         </div>
 
 	<script src="/plugins/bootstrap-pager.js"></script>
-</div>
+</div> -->

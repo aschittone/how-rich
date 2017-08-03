@@ -13,6 +13,8 @@
 class User < ApplicationRecord
   has_many :searches
   has_many :stocks, through: :searches
+  has_many :follows, class_name: "Follow", foreign_key: :follower_id
+
   has_secure_password
 
 end
