@@ -7,7 +7,7 @@
           <button type="button" class="btn btn-success">Book me!</button>  <button type="button" class="btn btn-info">Send me a message</button>
 <br>
         </div>
-      
+
     </div>
   <br>
     <div class="row">
@@ -60,12 +60,30 @@
         <!--/col-3-->
         <div class="col-sm-9" style="" contenteditable="false">
             <div class="panel panel-default">
-                <div class="panel-heading">Starfox221's Bio</div>
-                <div class="panel-body"> A long description about me.
-
+                <div class="panel-heading"><%= "Hello #{@user.name}! Here's your five most recent searches"%></div>
+                <div class="panel-body">
+                  <% @user_searches.all.reverse.take(5).each do |search| %>
+                  <% timeframe = 0 %>
+            			<% if search.end_date.year == search.start_date.year %>
+            					<% timeframe = 1 %>
+            			<% else %>
+            					<% timeframe = search.end_date.year - search.start_date.year %>
+            			<% end %>
+                  <h4><%= "Bought #{search.shares} shares of #{search.stock.name} @ #{search.buy_price} per share" %></h4>
+                    <%= "Invested $#{search.invested_money}" %>
+                    <br>
+                    <%= "Profit $#{search.profit}" %>
+                    <br>
+                    <%= "Total Return #{search.total_return}% over #{timeframe} years" %>
+                    <br>
+                    <%= "Annualized Return #{search.annual_return}%" %>
+                    <br>
+                    <br>
+                    <br>
+                  <% end %>
                 </div>
             </div>
-            <div class="panel panel-default target">
+            <!-- <div class="panel panel-default target">
                 <div class="panel-heading" contenteditable="false">Pets I Own</div>
                 <div class="panel-body">
                   <div class="row">
@@ -121,15 +139,15 @@
 
             </div>
 
-        </div>
-
+        </div> -->
+<!--
     </div>
            <div class="panel panel-default">
                 <div class="panel-heading">Starfox221's Bio</div>
                 <div class="panel-body"> A long description about me.
 
                 </div>
-</div></div>
+</div></div> -->
 
 
             <div id="push"></div>

@@ -31,7 +31,7 @@ class Calculation
     if end_date.year == start_date.year
       return total_return
     end
-    (total_return / investment_timeframe).round(2) * 100
+    (total_return / investment_timeframe).round(2)
   end
 
 

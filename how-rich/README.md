@@ -23,9 +23,11 @@ Things you may want to cover:
 
 ===========
 
-* shouldawouldacoulda relink to root
 * put ticker symble field first on home page
-* signin is broken
 * only show all user searches on user_show page
-* on main page show top searches
 * style numbers to include commas
+* invalid quotes error
+* link to profile page in banner
+<!-- * shouldawouldacoulda relink to root -->
+<!-- * signin is broken -->
+<!-- * on main page show top searches -->
