@@ -4,7 +4,12 @@ class SearchesController < ApplicationController
   end
 
   def new
-    @search = Search.new
+    @all_searches = Search.all
+    if current_user
+      current_user.searches << @search
+      @user_searches = Search.where(user_id: "#{current_user.id}")
+    end
+
   end
 
   def create
@@ -20,15 +25,15 @@ class SearchesController < ApplicationController
     elsif @search.buy_price > @search.investment_amount
       flash[:message] = "That isn't enough to buy one share! The price per share on that day was #{@search.buy_price}"
       render :new
-    elsif
+    else
       Calculation.new(@search)
+      @all_searches = Search.all
       if current_user
-        byebug
         current_user.searches << @search
         @user_searches = Search.where(user_id: "#{current_user.id}")
       end
-      @all_searches = Search.all
       render :stock_search
+
     end
   end
 
