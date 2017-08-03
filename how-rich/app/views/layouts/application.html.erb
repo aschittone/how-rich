@@ -27,7 +27,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
           <ul class="nav navbar-nav">
+            <li><a onclick="window.location.href='<%= user_path(current_user) if current_user %>'"> <%= current_user.name if current_user %></a></li>
             <li><a onclick="window.location.href='https://finance.yahoo.com/'">Market News</a></li>
+            <li><a onclick="window.location.href='/motivation'">On Motivation</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <% if logged_in? %>

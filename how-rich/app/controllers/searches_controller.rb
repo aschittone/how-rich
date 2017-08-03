@@ -34,7 +34,7 @@ class SearchesController < ApplicationController
         @user_searches = Search.where(user_id: "#{current_user.id}")
       end
       @all_searches = Search.all
-      redirect_to search_path
+      redirect_to search_path(@search)
     end
   end
 

@@ -2,7 +2,7 @@
 <div class="container target">
     <div class="row">
         <div class="col-sm-10">
-             <h1 class=""><%= @user.name %></h1>
+             <h1 class=""><%= @user.username %></h1>
 
           <button type="button" class="btn btn-success">Book me!</button>  <button type="button" class="btn btn-info">Send me a message</button>
 <br>
@@ -16,10 +16,8 @@
             <ul class="list-group">
                 <li class="list-group-item text-muted" contenteditable="false">Profile</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span> <%= @user.created_at.strftime("%B %Y") %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span> Joseph
-                        Doe</li>
-              <li class="list-group-item text-right"><span class="pull-left"><strong class="">Role: </strong></span> Pet Sitter
+                    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Name</strong></span> <%= @user.name %></li>
+          
 
                       </li>
             </ul>
