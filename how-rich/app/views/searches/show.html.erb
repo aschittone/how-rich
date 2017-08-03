@@ -20,7 +20,8 @@
 	</div>
 </div>
 
-<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+<div class="row">
+<div class="col-6 col-sm-3">
   <div class="panel text-center price-panel panel-blue">
     <div class="panel-heading">
       <h3>Total Profit</h3>
@@ -34,9 +35,7 @@
   </div>
 </div>
 
-<div class="container">
-	<div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="col-6 col-sm-3">
           <div class="panel text-center price-panel panel-grey">
             <div class="panel-heading">
               <h3>Total Return (ROI)</h3>
@@ -51,7 +50,7 @@
         </div>
 
 
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="col-6 col-sm-3">
           <div class="panel text-center price-panel panel-green">
             <div class="panel-heading">
               <h3>Annual Return</h3>
@@ -65,11 +64,7 @@
           </div>
         </div>
 
-				<!-- <% if logged_in? %>
-					# <%= @user_searches.each { |search| puts search } %>
-				<% end %> -->
-
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        <div class="col-6 col-sm-3">
           <div class="panel text-center price-panel panel-red">
             <div class="panel-heading">
               <h3>Shares purchased</h3>
@@ -85,40 +80,3 @@
         </div>
       </div>
 </div>
-
-<!--  chart -->
-
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
-
-        var options = {
-          title: 'Performance of <%=@stock.ticker_symbol%> within ...',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-		<div align='center'>
-    <div id="curve_chart" style="width: 1000px; height: 600px"></div>
-		</div>
-  </body>
-</html>
