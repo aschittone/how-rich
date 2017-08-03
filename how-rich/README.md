@@ -28,3 +28,4 @@ Things you may want to cover:
 * signin is broken
 * only show all user searches on user_show page
 * on main page show top searches
+* style numbers to include commas
