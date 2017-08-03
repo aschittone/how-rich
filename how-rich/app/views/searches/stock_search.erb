@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container"
+	<div class="row"><br>
+
+		<div class="jumbotron">
+			<% timeframe, stock_name = 0, @search.stock.name %>
+			<% if @search.end_date.year == @search.start_date.year %>
+					<% timeframe = 1 %>
+			<% else %>
+					<% timeframe = @search.end_date.year - @search.start_date.year %>
+			<% end %>
+      <% if @search.profit < 0%>
+        <h2 class="text-center">Based on our advanced algorithms, you would have lost <%= "$#{@search.profit}" %> on <%= stock_name %> during this <%= timeframe %> year period. </h2>
+      <% else %>
+      <h2 class="text-center">Based on our advanced algorithms, you would have made <%= "$#{@search.profit}" %> on <%= stock_name %> during this <%= timeframe %> year period. </h2>
+      <% end %>
+    </div>
+	</div>
+</div>
+
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+  <div class="panel text-center price-panel panel-blue">
+    <div class="panel-heading">
+      <h3>Total Profit</h3>
+    </div>
+    <div class="panel-body">
+      <p class="lead big-lead"><strong>$<%= @search.profit%></strong></p>
+    </div>
+    <div class="panel-footer">
+      <a href="http://www.investopedia.com/terms/p/profit.asp" class="btn btn-lg btn-block btn-primary">What's Profit?</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="panel text-center price-panel panel-grey">
+            <div class="panel-heading">
+              <h3>Total Return (ROI)</h3>
+            </div>
+            <div class="panel-body">
+              <p class="lead big-lead"><strong> <%= @search.total_return %>% </strong></p>
+            </div>
+            <div class="panel-footer">
+              <a href="https://www.entrepreneur.com/encyclopedia/return-on-investment-roi" class="btn btn-lg btn-block btn-primary">What's ROI?</a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="panel text-center price-panel panel-green">
+            <div class="panel-heading">
+              <h3>Annual Return</h3>
+            </div>
+            <div class="panel-body">
+              <p class="lead big-lead"><strong><%= @search.annual_return %>%</strong></p>
+            </div>
+            <div class="panel-footer">
+              <a href="http://www.investopedia.com/terms/a/annual-return.asp" class="btn btn-lg btn-block btn-primary">What's Annual Return?</a>
+            </div>
+          </div>
+        </div>
+
+				<!-- <% if logged_in? %>
+					# <%= @user_searches.each { |search| puts search } %>
+				<% end %> -->
+
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="panel text-center price-panel panel-red">
+            <div class="panel-heading">
+              <h3>Shares purchased</h3>
+            </div>
+            <div class="panel-body">
+              <p class="lead big-lead"><strong><%= @search.shares %> shares</strong></p>
+            </div>
+
+            <div class="panel-footer">
+              <a href="http://www.investopedia.com/terms/s/shares.asp" class="btn btn-lg btn-block btn-primary">What's a Share?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<!--  chart -->
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Performance of <%=@stock.ticker_symbol%> within ...',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+		<div align='center'>
+    <div id="curve_chart" style="width: 1000px; height: 600px"></div>
+		</div>
+  </body>
+</html>
