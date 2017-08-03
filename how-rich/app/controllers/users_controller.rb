@@ -22,7 +22,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-
+    @user_searches = Search.where(user_id: @user.id)
+    @all_searches = Search.all
   end
 
   def destroy

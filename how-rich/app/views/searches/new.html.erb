@@ -51,21 +51,22 @@
         <div class="row">
             <div class="col-xs-4">
                 <h2>Top 3 Searches</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <% Search.group(:stock_id).order(:stock_id).count.sort[0..2].map do |query|%>
+                <% stock = Stock.find_by(id: query[0])%>
+                <h4> <%= "#{stock.name} (#{stock.ticker_symbol}), Searched #{query[1]}"%></h4>
+                <% end %>
                 <p><a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank" class="btn btn-success">Learn More »</a></p>
             </div>
             <div class="col-xs-4">
                 <h2>Top Winners</h2>
-                <%= byebug %>
                 <% @all_searches.order(profit: :desc).limit(3).each do |query| %>
                   <h4> <%= "#{query.stock.name} (#{query.stock.ticker_symbol}): #{query.profit}" %></h3>
                 <% end %>
-              
                 <p><a href="http://www.tutorialrepublic.com/css-tutorial/" target="_blank" class="btn btn-success">Learn More »</a></p>
             </div>
             <div class="col-xs-4">
                 <h2>Top Loser</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p><a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank" class="btn btn-success">Learn More »</a></p>
-            </div>
+                <% @all_searches.order(:profit).limit(3).each do |query| %>
+                  <h4> <%= "#{query.stock.name} (#{query.stock.ticker_symbol}): #{query.profit}" %></h3>
+                <% end %>
         </div>
