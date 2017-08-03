@@ -5,7 +5,12 @@ class SearchesController < ApplicationController
     if current_user
       @user_searches = Search.where(user_id: "#{current_user.id}")
     end
-    
+  end
+
+  def show
+    @search = Search.find_by(id: params[:id])
+    @user_searches = Search.where(user_id: "#{current_user.id}")
+    @stock = @search.stock
   end
 
   def create
@@ -23,15 +28,13 @@ class SearchesController < ApplicationController
       @search.save
       @stock.searches << @search
       @search.update(sell_price: stock_quote.first[:low].to_f, buy_price: stock_quote.last[:high].to_f)
-      byebug
       Calculation.new(@search)
-
       if current_user
         current_user.searches << @search
         @user_searches = Search.where(user_id: "#{current_user.id}")
       end
-        @all_searches = Search.all
-      render :index
+      @all_searches = Search.all
+      redirect_to search_path
     end
   end
 
