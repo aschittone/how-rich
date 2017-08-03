@@ -5,12 +5,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    if params[:user][:password] != params[:user][:confirm_password]
+    if params[:user][:password] != params[:confirm_password]
       flash[:message] = "Your passwords didn't match!"
       render :new
     else
       @user = User.new(user_params)
-
       if !@user.save
         render :new
       else
