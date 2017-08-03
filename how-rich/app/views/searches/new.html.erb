@@ -47,26 +47,29 @@
   </div>
 </div>
 </p>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
-                <h2>Top 3 Searches</h2>
-                <% Search.group(:stock_id).order(:stock_id).count.sort[0..2].map do |query|%>
-                <% stock = Stock.find_by(id: query[0])%>
-                <h4> <%= "#{stock.name} (#{stock.ticker_symbol}), Searched #{query[1]}"%></h4>
-                <% end %>
-                <p><a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank" class="btn btn-success">Learn More »</a></p>
-            </div>
-            <div class="col-xs-4">
-                <h2>Top Winners</h2>
-                <% @all_searches.order(profit: :desc).limit(3).each do |query| %>
-                  <h4> <%= "#{query.stock.name} (#{query.stock.ticker_symbol}): #{query.profit}" %></h3>
-                <% end %>
-                <p><a href="http://www.tutorialrepublic.com/css-tutorial/" target="_blank" class="btn btn-success">Learn More »</a></p>
-            </div>
-            <div class="col-xs-4">
-                <h2>Top Loser</h2>
-                <% @all_searches.order(:profit).limit(3).each do |query| %>
-                  <h4> <%= "#{query.stock.name} (#{query.stock.ticker_symbol}): #{query.profit}" %></h3>
-                <% end %>
-        </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+      <h2>Top 3 Searches</h2>
+      <% Search.group(:stock_id).order(:stock_id).count.sort[0..4].map do |query|%>
+      <% stock = Stock.find_by(id: query[0])%>
+      <h4><%= "#{stock.name} (#{stock.ticker_symbol}), Searched #{query[1]}"%></h4>
+      <% end %>
+    </div>
+    <div class="col-xs-4">
+      <h2>Top Winners</h2>
+      <% @all_searches.order(profit: :desc).limit(4).each do |query| %>
+        <h4 onclick="window.location.href='/searches/<%=query.id%>'"> <%= "#{query.stock.name} (#{query.stock.ticker_symbol}): #{query.profit}" %></h3>
+      <% end %>
+    </div>
+    <div class="col-xs-4">
+      <h2>Top Losers</h2>
+      <% @all_searches.order(:profit).limit(4).each do |query| %>
+        <h4 onclick="window.location.href='/searches/<%=query.id%>'"> <%= "#{query.stock.name} (#{query.stock.ticker_symbol}): #{query.profit}" %></h3>
+      <% end %>
+    </div>
+  </div>
+</div>
