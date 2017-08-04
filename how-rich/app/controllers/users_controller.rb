@@ -21,7 +21,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to root_path unless logged_in?
+    byebug
+    redirect_to root_path unless session[:user_id] == params[:id].to_i
     @user = User.find_by(id: params[:id])
     @user_searches = Search.where(user_id: @user.id)
     @all_searches = Search.all

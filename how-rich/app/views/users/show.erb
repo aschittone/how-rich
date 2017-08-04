@@ -46,23 +46,23 @@
                 <ul class="list-group">
                   <% @user_searches.all.reverse.take(5).each do |search| %>
                   <% timeframe = 0 %>
-                  <% if search.end_date.year == search.start_date.year %>
-                      <% timeframe = 1 %>
-                  <% else %>
-                      <% timeframe = search.end_date.year - search.start_date.year %>
-                  <% end %>
+                    <% if search.end_date.year == search.start_date.year %>
+                        <% timeframe = 1 %>
+                    <% else %>
+                        <% timeframe = search.end_date.year - search.start_date.year %>
+                    <% end %>
 
-                  <li class="list-group-item"><span class="pull-left"></span><h4><%= "Bought #{search.shares} shares of #{search.stock.name} @ #{search.buy_price} per share" %></h4>
-                  <%= "Invested: $#{search.invested_money}" %>
-                  <br>
-                  <%= "Profit: $#{search.profit}" %>
-                  <br>
-                  <%= "Total Return: #{search.total_return}% over #{timeframe} year(s)" %>
-                  <br>
-                  <%= "Annualized Return: #{search.annual_return}%" %>
-                  <br>
-                  <br>
-                  </li>
+                      <li class="list-group-item"><span class="pull-left"></span><h4><%= "Bought #{search.shares} shares of #{search.stock.name} @ #{search.buy_price} per share" %></h4>
+                      <%= "Invested: $#{search.invested_money}" %>
+                      <br>
+                      <%= "Profit: $#{search.profit}" %>
+                      <br>
+                      <%= "Total Return: #{search.total_return}% over #{timeframe} year(s)" %>
+                      <br>
+                      <%= "Annualized Return: #{search.annual_return}%" %>
+                      <br>
+                      <br>
+                      </li>
                   <% end %>
                 </ul>
 
