@@ -18,7 +18,6 @@ class SearchesController < ApplicationController
     @stock = Stock.find_by(stock_params)
     @all_searches = Search.all
     # make sure ticker_symbols are up case when inputted
-    byebug
     stock_quote = MarketBeat.quotes(@stock.ticker_symbol, @search.start_date, @search.end_date)
     if @search.start_date < stock_quote.last[:date]
       flash[:message] = "#{@stock.name} was not around at that time!"
