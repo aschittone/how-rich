@@ -9,13 +9,13 @@ class SearchesController < ApplicationController
 
   def show
     @search = Search.find_by(id: params[:id])
-    @user_searches = Search.where(user_id: "#{current_user.id}")
     @stock = @search.stock
   end
 
   def create
     @search = Search.new(search_params)
     @stock = Stock.find_by(stock_params)
+    @all_searches = Search.all
     # make sure ticker_symbols are up case when inputted
     stock_quote = MarketBeat.quotes(@stock.ticker_symbol, @search.start_date, @search.end_date)
     if @search.start_date < stock_quote.last[:date]
@@ -33,8 +33,7 @@ class SearchesController < ApplicationController
         current_user.searches << @search
         @user_searches = Search.where(user_id: "#{current_user.id}")
       end
-      @all_searches = Search.all
-      redirect_to search_path
+      redirect_to search_path(@search)
     end
   end
 

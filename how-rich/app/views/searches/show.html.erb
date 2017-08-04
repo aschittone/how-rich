@@ -12,7 +12,7 @@
 					<% timeframe = @search.end_date.year - @search.start_date.year %>
 			<% end %>
       <% if @search.profit < 0%>
-        <h2 class="text-center">Based on our advanced algorithms, you would have lost <%= "$#{@search.profit}" %> on <%= stock_name %> during this <%= timeframe %> year period. </h2>
+        <h2 class="text-center">Based on our advanced algorithms, you would have lost <%= "$#{-@search.profit}" %> on <%= stock_name %> during this <%= timeframe %> year period. </h2>
       <% else %>
       <h2 class="text-center">Based on our advanced algorithms, you would have made <%= "$#{@search.profit}" %> on <%= stock_name %> during this <%= timeframe %> year period. </h2>
       <% end %>
@@ -21,56 +21,62 @@
 </div>
 
 <div class="row">
-  <div class="col-6 col-sm-3">
-		<div class="panel text-center price-panel panel-blue">
-			<div class="panel-heading">
-				<h3>Total Profit</h3>
-			</div>
-			<div class="panel-body">
-				<p class="lead big-lead"><strong>$<%= @search.profit%></strong></p>
-			</div>
-			<div class="panel-footer">
-				<a href="http://www.investopedia.com/terms/p/profit.asp" class="btn btn-lg btn-block btn-primary">What's Profit?</a>
-			</div>
-		</div>
-	</div>
-  <div class="col-6 col-sm-3">
-		<div class="panel text-center price-panel panel-grey">
-			<div class="panel-heading">
-				<h3>Total Return (ROI)</h3>
-			</div>
-			<div class="panel-body">
-				<p class="lead big-lead"><strong> <%= @search.total_return %>% </strong></p>
-			</div>
-			<div class="panel-footer">
-				<a href="https://www.entrepreneur.com/encyclopedia/return-on-investment-roi" class="btn btn-lg btn-block btn-primary">What's ROI?</a>
-			</div>
-		</div>
-	</div>
-  <div class="col-6 col-sm-3">
-			<div class="panel text-center price-panel panel-green">
-				<div class="panel-heading">
-					<h3>Annual Return</h3>
-				</div>
-				<div class="panel-body">
-					<p class="lead big-lead"><strong><%= @search.annual_return %>%</strong></p>
-				</div>
-				<div class="panel-footer">
-					<a href="http://www.investopedia.com/terms/a/annual-return.asp" class="btn btn-lg btn-block btn-primary">What's Annual Return?</a>
-				</div>
-			</div>
-	</div>
-  <div class="col-6 col-sm-3">
-		<div class="panel text-center price-panel panel-red">
-			<div class="panel-heading">
-				<h3>Shares purchased</h3>
-			</div>
-			<div class="panel-body">
-				<p class="lead big-lead"><strong><%= @search.shares %> shares</strong></p>
-			</div>
-			<div class="panel-footer">
-				<a href="http://www.investopedia.com/terms/s/shares.asp" class="btn btn-lg btn-block btn-primary">What's a Share?</a>
-			</div>
-		</div>
-	</div>
+<div class="col-6 col-sm-3">
+  <div class="panel text-center price-panel panel-blue">
+    <div class="panel-heading">
+      <h3>Total Profit</h3>
+    </div>
+    <div class="panel-body">
+      <p class="lead big-lead"><strong>$<%= @search.profit%></strong></p>
+    </div>
+    <div class="panel-footer">
+      <a href="http://www.investopedia.com/terms/p/profit.asp" class="btn btn-lg btn-block btn-primary">What's Profit?</a>
+    </div>
+  </div>
+</div>
+
+        <div class="col-6 col-sm-3">
+          <div class="panel text-center price-panel panel-grey">
+            <div class="panel-heading">
+              <h3>Total Return (ROI)</h3>
+            </div>
+            <div class="panel-body">
+              <p class="lead big-lead"><strong> <%= @search.total_return %>% </strong></p>
+            </div>
+            <div class="panel-footer">
+              <a href="https://www.entrepreneur.com/encyclopedia/return-on-investment-roi" class="btn btn-lg btn-block btn-primary">What's ROI?</a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-6 col-sm-3">
+          <div class="panel text-center price-panel panel-green">
+            <div class="panel-heading">
+              <h3>Annual Return</h3>
+            </div>
+            <div class="panel-body">
+              <p class="lead big-lead"><strong><%= @search.annual_return %>%</strong></p>
+            </div>
+            <div class="panel-footer">
+              <a href="http://www.investopedia.com/terms/a/annual-return.asp" class="btn btn-lg btn-block btn-primary">What's Annual Return?</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-sm-3">
+          <div class="panel text-center price-panel panel-red">
+            <div class="panel-heading">
+              <h3>Shares purchased</h3>
+            </div>
+            <div class="panel-body">
+              <p class="lead big-lead"><strong><%= @search.shares %> shares</strong></p>
+            </div>
+
+            <div class="panel-footer">
+              <a href="http://www.investopedia.com/terms/s/shares.asp" class="btn btn-lg btn-block btn-primary">What's a Share?</a>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
