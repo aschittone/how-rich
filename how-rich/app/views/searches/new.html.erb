@@ -34,14 +34,12 @@
 
 
 
-          <input list="browsers" name="stock[ticker_symbol]">
-          <datalist id="browsers">
-            <% @stocks.each do |stock| %>
-              <option value="<%= stock.ticker_symbol %> - <%= stock.name %>"> <%= stock.ticker_symbol %></option>
-            <% end %>
-          </datalist>
-
-              <input type="search" name="stock[ticker_symbol]" class="form-control" placeholder="Ticker Symbol">
+              <input list="browsers" name="stock[ticker_symbol]" class="form-control">
+              <datalist id="browsers">
+                <% @stocks.each do |stock| %>
+                  <option value="<%= stock.ticker_symbol%>"><%= stock.ticker_symbol%></option>
+                <% end %>
+              </datalist>
                 <%= flash[:message] %>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-3"></div>
