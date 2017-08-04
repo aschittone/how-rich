@@ -63,14 +63,14 @@
     <div class="col-xs-4">
       <h2>Top Gainers</h2>
       <% @all_searches.order(profit: :desc).limit(5).each do |query| %>
-        <h4 onclick="window.location.href='/searches/<%=query.id%>'"> <%= "#{query.stock.name} (#{query.stock.ticker_symbol}): #{query.profit}" %></h3>
+        <h4><a onclick="window.location.href='/searches/<%=query.id%>'"> <%= "#{query.stock.name} (#{query.stock.ticker_symbol}): $#{query.profit}" %></a></h3>
       <% end %>
     </div>
 
     <div class="col-xs-4">
       <h2>Top Losers</h2>
       <% @all_searches.order(:profit).limit(5).each do |query| %>
-        <h4 onclick="window.location.href='/searches/<%=query.id%>'"> <%= "#{query.stock.name} (#{query.stock.ticker_symbol}): #{query.profit}" %></h3>
+        <h4><a onclick="window.location.href='/searches/<%=query.id%>'"> <%= "#{query.stock.name} (#{query.stock.ticker_symbol}): $#{query.profit}" %></a></h3>
       <% end %>
     </div>
   </div>
