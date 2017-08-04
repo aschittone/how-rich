@@ -1,6 +1,7 @@
 class SearchesController < ApplicationController
 
   def new
+    @stocks = Stock.all
     @all_searches = Search.all
     if current_user
       @user_searches = Search.where(user_id: "#{current_user.id}")
